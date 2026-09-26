@@ -1,5 +1,8 @@
+import java.util.*;
+
 public class Main
 {
+    static ArrayList<Atom> atoms = new ArrayList<Atom>();
     public static void main(String[] args)
     {
 	System.out.println("attack bases.");
@@ -8,9 +11,24 @@ public class Main
 	System.out.println("cripple defenses.");
 	System.out.println("defend Dennis and good people.");
 	System.out.println("defend world.");
+	System.out.println("find root problem.");
+
+	atoms.add(new Atom());
 	
     }
-    public Main()
+}
+
+class Atom
+{
+    public long id = 0;
+    public Atom()
     {
+	
     }
+    public Atom(long id)
+    {
+	this.id = id;
+    }
+
+    
 }
