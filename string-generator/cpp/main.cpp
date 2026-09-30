@@ -1,0 +1,33 @@
+#include <iostream>
+#include <random>
+#include <stdexcept>
+#include <string>
+
+class Main {
+public:
+  std::string generate(int length) {
+    if (length < 0) {
+      throw std::invalid_argument("Length must not be negative");
+    }
+
+    std::uniform_int_distribution<int> bit(0, 1);
+    std::string result;
+
+    for (int i = 0;i< length; i++)
+      {
+	std::mt19937 generator(std::random_device{}());
+	std::uniform_int_distribution<int> distribution(0,1);
+
+	int number = distribution(generator);
+	result += std::to_string(number);
+      }
+    //std::cout << result << '\n';
+    return result;
+  }
+};
+int main() {
+  Main app;
+  std::cout << app.generate(5) << '\n';
+  return 0;
+}
+

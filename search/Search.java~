@@ -1,0 +1,96 @@
+import java.util.*;
+public class Search
+{
+    public static int[] arr;
+    public static void main(String[] args)
+    {
+	arr = new int[100];
+	for (int i=0;i<100;i++)
+	    {
+		Random rand = new Random();
+		arr[i] = rand.nextInt(1000);
+	    }
+
+	boolean finished = false;
+	int count = 0;
+	boolean[] booleans = new boolean[100];
+	while(count < 5000) {
+	    int[] heuristics = new int[100];
+	    for (int i=0;i<100;i++)
+		{
+		    heuristics[i] = Math.abs((arr[i] / 10) - i);
+		}
+	    int lowestI = 0;
+	    int lowestValue = 0;
+	    int lowestI2 = 0;
+	    int lowestValue2 = 0;
+	    int greatestI = 0;
+	    for (int i=0;i<99;i++)
+		{
+		    if (booleans[i])
+			continue;
+		    if ((heuristics[i+1] - heuristics[i]) > lowestValue)
+			{
+			    if (lowestI == i)
+				{
+				    booleans[lowestI2] = true;
+				    booleans[lowestI] = true;
+				}
+			    lowestI2 = lowestI;
+			    lowestI = i;
+
+			    lowestValue2 = lowestValue;
+			    lowestValue = heuristics[i+1] - heuristics[i];
+
+			   
+			}
+		    if (heuristics[i] <= heuristics[greatestI])
+			greatestI = i;
+		}
+	    
+	    //swap(lowestI, lowestI2);
+
+	    //	    for (int i=0;i<99;i++)
+	    //	{
+	    if (lowestI < 99 && lowestI2 < 99) {
+		
+		if (heuristics[lowestI2] > heuristics[lowestI2 + 1])
+		    swap(lowestI2 + 1, lowestI2);
+		if (heuristics[lowestI] > heuristics[lowestI + 1])
+		    swap(lowestI + 1, lowestI);
+		    //	}
+	    }
+
+	    boolean done = false;
+	    for (int i=0;i<100;i++)
+		{
+		    if (!booleans[i]))
+		    {
+			done = true;
+			break;
+		    }
+	}
+	if (!done)
+	    {
+		for (int i=0;i<100;i++)
+
+		    {
+			booleans[i] = false;
+		    }
+	    }
+	
+	    count++;
+	}
+
+	for (int i=0;i<100;i++)
+	    {
+		System.out.println(arr[i]);
+	    }
+    }
+    public static void swap(int i, int i2)
+    {
+	int temp = arr[i];
+	arr[i] = arr[i2];
+	arr[i2] = temp;
+    }
+}
